@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
     #enaable CSRF protection
     include ActionController::RequestForgeryProtection
     protect_from_forgery with: :exception
