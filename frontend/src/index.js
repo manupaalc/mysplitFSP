@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { restoreSession } from './utils/authUtils';
+import { deleteSession, postSession, postUser } from './utils/sessionApiUtils';
+
+// for testing only
+window.postUser = postUser
+window.postSession = postSession
+window.deleteSession = deleteSession
 
 
 
