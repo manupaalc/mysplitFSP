@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: mysplitFSP_production
-  username: mysplitFSP
-  password: <%= ENV["MYSPLITFSP_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
