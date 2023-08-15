@@ -1,8 +1,8 @@
 import { deleteSession, postSession, postUser } from "../utils/sessionApiUtils"
 
 // CONSTANTS
-const RECEIVE_USER = 'RECEIVE_USER'
-const REMOVE_USER = 'REMOVE_USER'
+export const RECEIVE_USER = 'RECEIVE_USER'
+export const REMOVE_USER = 'REMOVE_USER'
 
 //ACTION CREATORS
 
@@ -21,6 +21,7 @@ export const removeUser = userId => ({
 export const createUser = userData => dispatch =>(
     postUser(userData)
     .then(user => {
+        sessionStorage.setItem('currentUser', JSON.stringify(user.user))
         dispatch(receiveUser(user))
     })
 )
@@ -28,6 +29,7 @@ export const createUser = userData => dispatch =>(
 export const loginUser = credentials => dispatch => (
     postSession(credentials)
     .then(user => {
+        sessionStorage.setItem('currentUser', JSON.stringify(user.user))
         dispatch(receiveUser(user))
     })
 )
@@ -35,6 +37,7 @@ export const loginUser = credentials => dispatch => (
 export const logoutUser = userId =>  dispatch => (
     deleteSession()
     .then(()=> {
+        sessionStorage.setItem('currenUser', null)
         dispatch(removeUser(userId))
     })
 )

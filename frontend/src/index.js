@@ -5,18 +5,32 @@ import App from './App';
 import { restoreSession } from './utils/authUtils';
 import { deleteSession, postSession, postUser } from './utils/sessionApiUtils';
 import { createUser, loginUser, logoutUser } from './store/usersReducer';
-
-// for testing only
-// window.postUser = postUser
-// window.postSession = postSession
-// window.deleteSession = deleteSession
-// window.loginUser = loginUser
-// window.logoutUser = logoutUser
-// window.signupUser = createUser
-
-
+import configureStore from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+const currentUser = sessionStorage.getItem('currentUser')
+const csrfToken = sessionStorage.getItem('csrfToken')
+
+
+let initialState = {}
+const currentUserData = JSON.parse(currentUser)
+
+if (currentUserData) {
+  initialState = {
+    entities: {
+      users: {
+        [currentUserData.id]: currentUserData
+      }
+    },
+    session: {
+      currentUser : currentUserData.id
+    }
+  }
+}
+
+const store = configureStore(initialState)
+
+
 const renderApp = () => {
   root.render(
     <React.StrictMode>
@@ -26,8 +40,7 @@ const renderApp = () => {
 }
 
 // restoreSession().then(renderApp)
-const currentUser = sessionStorage.getItem('currentUser')
-const csrfToken = sessionStorage.getItem('csrfToken')
+
 if(!currentUser || !csrfToken){
   restoreSession().then(renderApp)
 } else {
@@ -35,3 +48,10 @@ if(!currentUser || !csrfToken){
 }
 
   
+// for testing only
+// window.postUser = postUser
+// window.postSession = postSession
+// window.deleteSession = deleteSession
+// window.loginUser = loginUser
+// window.logoutUser = logoutUser
+// window.signupUser = createUser

@@ -20,6 +20,7 @@ export const csrfFetch = async(url, options = {}) => {
     options.headers||= {}
 
     if(options.method.toUpperCase() !== 'GET'){
+      
         options.headers['Content-Type'] = 'application/json'
         options.headers['X-CSRF-Token'] = sessionStorage.getItem('csrfToken')
     }
