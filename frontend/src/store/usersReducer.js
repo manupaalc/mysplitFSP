@@ -1,4 +1,4 @@
-import { postUser } from "../utils/sessionApiUtils"
+import { deleteSession, postSession, postUser } from "../utils/sessionApiUtils"
 
 // CONSTANTS
 const RECEIVE_USER = 'RECEIVE_USER'
@@ -22,6 +22,20 @@ export const createUser = userData => dispatch =>(
     postUser(userData)
     .then(user => {
         dispatch(receiveUser(user))
+    })
+)
+
+export const loginUser = credentials => dispatch => (
+    postSession(credentials)
+    .then(user => {
+        dispatch(receiveUser(user))
+    })
+)
+
+export const logoutUser = userId =>  dispatch => (
+    deleteSession()
+    .then(()=> {
+        dispatch(removeUser(userId))
     })
 )
 
