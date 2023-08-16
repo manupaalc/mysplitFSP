@@ -5,9 +5,18 @@ class User < ApplicationRecord
 
     before_validation :ensure_session_token
     
-    validates :username, presence: true, uniqueness: true
-    validates :email, presence: true, uniqueness: true
-    validates :password, length:{minimum: 6 }, allow_nil: true
+    validates :username, presence: true,
+     uniqueness: true, length: {in: 3..30},
+     format: { without: URI::MailTo::EMAIL_REGEXP,
+     message:  "can't be an email" }
+
+    validates :email,
+     presence: true, uniqueness: true,
+      format: { with: URI::MailTo::EMAIL_REGEXP }
+
+    validates :password, 
+    length:{minimum: 6 }, 
+     allow_nil: true
 
     has_many :group_users,
         dependent: :destroy

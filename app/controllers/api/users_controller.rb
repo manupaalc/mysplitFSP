@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
     def user_params
         #frontend ideally wants to dispatch {username: 'name', password: 'possword'}
         #backend expects {user:{username: 'name, password: 'password'}}
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:email, :username, :password)
     end
 
 end

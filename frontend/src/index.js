@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import { restoreSession } from './utils/authUtils';
 import { deleteSession, postSession, postUser } from './utils/sessionApiUtils';
 import { createUser, loginUser, logoutUser } from './store/usersReducer';
 import configureStore from './store/store';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const currentUser = sessionStorage.getItem('currentUser')
