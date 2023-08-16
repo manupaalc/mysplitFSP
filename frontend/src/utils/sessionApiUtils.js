@@ -13,9 +13,14 @@ export const postSession = async credentials => {
     const res = await csrfFetch('/api/session', {
         method: 'POST', 
         body:JSON.stringify(credentials)
-    })
-    const user = res.json()
-    return user
+    }) 
+    if(res.ok){
+        const user = await res.json()
+        return user
+    }else {
+        const errors = await res.json()
+        throw errors
+    }
 }
 
 export const deleteSession = async () => {

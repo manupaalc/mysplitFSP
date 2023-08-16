@@ -5,18 +5,21 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import { restoreSession } from './utils/authUtils';
-import { deleteSession, postSession, postUser } from './utils/sessionApiUtils';
-import { createUser, loginUser, logoutUser } from './store/usersReducer';
+//import { deleteSession, postSession, postUser } from './utils/sessionApiUtils';
+//import { createUser, loginUser, logoutUser } from './store/usersReducer';
 import configureStore from './store/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const currentUser = sessionStorage.getItem('currentUser')
+console.log('currentUser:', currentUser); 
 const csrfToken = sessionStorage.getItem('csrfToken')
+console.log('csrfToken:', csrfToken); 
 
 
 let initialState = {}
 const currentUserData = JSON.parse(currentUser)
+console.log('currentUserData:', currentUserData); // Add this line
 
 if (currentUserData) {
   initialState = {
@@ -37,7 +40,11 @@ const store = configureStore(initialState)
 const renderApp = () => {
   root.render(
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   )
 }
@@ -58,3 +65,4 @@ if(!currentUser || !csrfToken){
 // window.loginUser = loginUser
 // window.logoutUser = logoutUser
 // window.signupUser = createUser
+window.store = store

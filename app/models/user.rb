@@ -28,7 +28,7 @@ class User < ApplicationRecord
         foreign_key: :payer_id,
         dependent: :destroy
     
-    has_many :expense_splits,
+    has_many :split_expenses,
         foreign_key: :debtor_id,
         dependent: :destroy
     
@@ -38,8 +38,8 @@ class User < ApplicationRecord
     has_many :friends,
         dependent: :destroy
 
-    def self.find_by_credentials(username, password)
-        user = User.find_by(username: username)
+    def self.find_by_credentials(email, password)
+        user = User.find_by(email: email)
         if user && user.authenticate(password)
             user
         else

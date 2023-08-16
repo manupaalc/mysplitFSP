@@ -22,7 +22,7 @@ const RegisterForm = props => {
                 try {
                     data = await res.clone().json();
                 } catch {
-                    data = await res.text();
+                    //data = await res.text();
                 }
                 if (data?.errors) setErrors(data.errors);
                 else if (data) setErrors([data]);
@@ -32,7 +32,7 @@ const RegisterForm = props => {
     return (
         <div>
             <h1>INTRODUCE YOURSELF</h1>
-            <form on onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label> 
                     <p>Hi there! My name is </p>
                     <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required />

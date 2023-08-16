@@ -31,13 +31,17 @@ export const loginUser = credentials => dispatch => (
     .then(user => {
         sessionStorage.setItem('currentUser', JSON.stringify(user.user))
         dispatch(receiveUser(user))
+    
+    })
+    .catch (errors => {
+        console.log(errors)
     })
 )
 
 export const logoutUser = userId =>  dispatch => (
     deleteSession()
     .then(()=> {
-        sessionStorage.setItem('currenUser', null)
+        sessionStorage.setItem('currentUser', null)
         dispatch(removeUser(userId))
     })
 )

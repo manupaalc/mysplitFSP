@@ -7,7 +7,7 @@ import sessionReducer from "./sessionReducer"
 const dummyReducer = (state = {}, action) => state
 
 const rootReducer = combineReducers({
-    entities: entitiesReducer,
+    
     session: sessionReducer,
     ui: dummyReducer
 
