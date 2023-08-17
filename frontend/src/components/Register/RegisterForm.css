@@ -1,0 +1,104 @@
+.register-page {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 200px;
+    
+}
+
+.register-image {
+    width: 200px;
+    margin-right: 25px;
+}
+
+.register-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding-left: 15px;
+    font-family: 'Lato', sans-serif;
+}
+
+.register-form h1 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.register-form label {
+    font-size: 24px;
+    /* First label */
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.register-form input {
+    font-size: 32px;
+    /* First input */
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    transition: border-color 0.3s;
+    background-color: transparent;
+}
+
+/* Style for the next two labels and inputs (hidden) */
+.register-form label:nth-child(2),
+.register-form label:nth-child(3) {
+    font-size: 18px;
+   
+}
+
+.register-form input:nth-child(2),
+.register-form input:nth-child(3) {
+    font-size: 20px;
+    width: 100%;
+    padding: 8px;
+    transition: border-color 0.3s;
+    border: solid .5px;
+   
+}
+
+.register-button {
+    font-size: 24px;
+    color: white;
+    background-color: #ff652f;
+    padding: 11px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.register-button:hover {
+    background-color: #ff5415;
+}
+
+/* Login as Messi button (similar to Sign Up button) */
+.login-as-messi-button {
+    font-size: 24px;
+    color: white;
+    background-color: #ff652f;
+    padding: 11px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.login-as-messi-button:hover {
+    background-color: #ff5415;
+}
+
+.error-message {
+    width: 100%;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
