@@ -2,6 +2,8 @@ import { applyMiddleware, combineReducers, compose, legacy_createStore } from "r
 import thunk from 'redux-thunk'
 import sessionReducer from "./sessionReducer"
 import errorsReducer from "./errorsReducers"
+import entitiesReducer from "./entitiesReducer"
+
 
 
 const dummyReducer = (state = {}, action) => state
@@ -10,7 +12,8 @@ const rootReducer = combineReducers({
     
     session: sessionReducer,
     ui: dummyReducer,
-    errors: errorsReducer
+    errors: errorsReducer,
+    entities: entitiesReducer
 
 })
 
