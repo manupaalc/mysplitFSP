@@ -5,6 +5,7 @@ import {  Route, Switch, useLocation } from "react-router-dom";
 import WelcomePage from './components/WelcomePage';
 import DashboardPage from './components/Dashboard/DashboardPage';
 import PreLoginNav from './components/Navigation/NavBar';
+import NotFoundPage from './components/NotFoundPage';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route exact path="/signup" component={RegisterPage} />
 
         <Route exact path="/dashboard" component={DashboardPage} />
+
+        <Route component={NotFoundPage}/>
          
       </Switch>
     </div>
