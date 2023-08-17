@@ -5,8 +5,14 @@ export const postUser = async userData => {
         method: 'POST',
         body: JSON.stringify(userData)
     })
-    const user = await res.json()
-    return user
+    if (res.ok){
+        const user = await res.json()
+        return user
+    } else {
+        const errors = await res.json();
+        throw errors
+    }
+  
 }
 
 export const postSession = async credentials => {

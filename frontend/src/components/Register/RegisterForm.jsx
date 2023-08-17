@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './RegisterForm.css';
 import React, { useState } from 'react';
 import { createUser, loginUser } from '../../store/usersReducer';
@@ -8,24 +8,14 @@ const RegisterForm = props => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const errors = useSelector(state => state.errors.createUser)
+    const [showInputs, setShowInputs] = useState(false)
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors([]);
 
         return dispatch(createUser({ username, email, password }))
-            .catch(async res => {
-                let data;
-                try {
-                    data = await res.clone().json();
-                } catch {
-                    //data = await res.text();
-                }
-                if (data?.errors) setErrors(data.errors);
-                else if (data) setErrors([data]);
-                else setErrors([res.statusText]);
-            });
+            
     };
 
     return (
@@ -48,28 +38,32 @@ const RegisterForm = props => {
                         type="text"
                         value={username}
                         onChange={e => setUsername(e.target.value)}
+                        onFocus={()=>setShowInputs(true)}
                         required
                     />
                 </label>
-                <label>
-                    <p>Here's my email address </p>
-                    <input
-                        type="text"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    <p>and my password </p>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                   
+                {showInputs &&(
+                    <div className='hiding-labels' >
+                        <label>
+                            <p>Here's my email address </p>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label>
+                            <p>and my password </p>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
+                )}
                 <button className="register-button">Sign me up!</button>
             </form>
             <button

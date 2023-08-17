@@ -8,29 +8,18 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+  
 
     const currentUser = useSelector(state => state.session.currentUser);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        setErrors([]);
+       
 
-        // if (email === 'messi@god.com' && password === 'password') {
-        //     await dispatch(loginUser({ email, password }));
-        //     return;
-        // }
+    
 
         dispatch(loginUser({ email, password })).catch(async res => {
-            let data;
-            try {
-                data = await res.clone().json();
-            } catch {
-                //data = await res.text();
-            }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
+        
         });
     };
 
@@ -41,7 +30,6 @@ const LoginForm = () => {
     return (
         <div className="login-form">
             <form  onSubmit={handleSubmit}>
-                <ul>{errors.map((error, index) => <li key={index}>{error}</li>)}</ul>
                 <h1>Log in</h1>
                 <label>
                     Email address

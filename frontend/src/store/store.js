@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, legacy_createStore } from "redux"
-import entitiesReducer from "./entitiesReducer"
 import thunk from 'redux-thunk'
 import sessionReducer from "./sessionReducer"
+import errorsReducer from "./errorsReducers"
 
 
 const dummyReducer = (state = {}, action) => state
@@ -9,7 +9,8 @@ const dummyReducer = (state = {}, action) => state
 const rootReducer = combineReducers({
     
     session: sessionReducer,
-    ui: dummyReducer
+    ui: dummyReducer,
+    errors: errorsReducer
 
 })
 
@@ -25,6 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const configureStore = (preloadedState = {}) => (
-    legacy_createStore(rootReducer, preloadedState, applyMiddleware(thunk))
+    legacy_createStore(rootReducer, preloadedState, enhancer)
 )
 export default configureStore;

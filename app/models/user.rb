@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
     validates :email,
      presence: true, uniqueness: true,
-      format: { with: URI::MailTo::EMAIL_REGEXP }
+      format: { with: URI::MailTo::EMAIL_REGEXP, message: "email is not correct" }
 
     validates :password, 
     length:{minimum: 6 }, 

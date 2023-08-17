@@ -1,7 +1,7 @@
-import {combineReducers} from "redux";
+// import {combineReducers} from "redux";
 
-const entitiesReducer = combineReducers({
+// const entitiesReducer = combineReducers({
     
-})
+// })
 
-export default entitiesReducer;
+// export default entitiesReducer;

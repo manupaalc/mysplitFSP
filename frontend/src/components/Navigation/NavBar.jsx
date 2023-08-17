@@ -13,10 +13,10 @@ const NavBar = () => {
         return (
             <>
                 <header className="welcome-header">
-                    <div className='logo'>
+                    <Link to='/' className='logo'>
                         <img src="/logo.png" alt='logo' />
                         <p>mySplits</p>
-                    </div>
+                    </Link>
 
 
                     <div id='access-buttons'>

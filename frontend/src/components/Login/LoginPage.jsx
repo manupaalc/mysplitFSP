@@ -1,19 +1,20 @@
 import { useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
-import './LoginForm.css';
+
+import './LoginPage.css';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import { useState } from 'react'; // Import useState
+
 
 const LoginPage = () => {
     const currentUser = useSelector(state => state.session.currentUser);
-    const [loginError, setLoginError] = useState(null); // Initialize the state variable
+    const errors = useSelector(state => state.errors.loginUser)
 
     if (currentUser) return <Redirect to="/dashboard" />;
 
     return (
         <div className='login-page-container'>
-            {loginError && <div className="login-error">{loginError}</div>}
-            <LoginForm setLoginError={setLoginError} /> {/* Pass the setter function as a prop */}
+            {errors.length > 0 && <div className="login-error">Whoops! We could not find an account for that email address and password. Maybe you have forgotten your password?</div>}
+            <LoginForm  /> 
         </div>
     );
 };

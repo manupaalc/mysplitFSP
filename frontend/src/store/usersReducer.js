@@ -1,8 +1,10 @@
 import { deleteSession, postSession, postUser } from "../utils/sessionApiUtils"
+import { receiveCreateUserErrors, receiveLoginUserErrors } from "./errorsReducers"
 
 // CONSTANTS
 export const RECEIVE_USER = 'RECEIVE_USER'
 export const REMOVE_USER = 'REMOVE_USER'
+
 
 //ACTION CREATORS
 
@@ -16,15 +18,19 @@ export const removeUser = userId => ({
     payload: userId
 })
 
+
+
 // THUNK ACTION CREATORS
 
-export const createUser = userData => dispatch =>(
+export const createUser = userData => dispatch =>{
     postUser(userData)
     .then(user => {
         sessionStorage.setItem('currentUser', JSON.stringify(user.user))
-        dispatch(receiveUser(user))
+        dispatch(receiveUser(user.user))
+     
     })
-)
+    .catch((errors) => dispatch(receiveCreateUserErrors(errors)))
+}
 
 export const loginUser = credentials => dispatch => (
     postSession(credentials)
@@ -33,9 +39,7 @@ export const loginUser = credentials => dispatch => (
         dispatch(receiveUser(user))
     
     })
-    .catch (errors => {
-        console.log(errors)
-    })
+    .catch (errors => dispatch(receiveLoginUserErrors(errors)))
 )
 
 export const logoutUser = userId =>  dispatch => (
@@ -50,18 +54,19 @@ export const logoutUser = userId =>  dispatch => (
 
 //REDUCER
 
-const usersReducer = (state = {}, action) => {
-    const nextState = {...state}
+const usersReducer = (state = { signupError: null }, action) => {
+    const nextState = { ...state };
 
-    switch(action.type) {
+    switch (action.type) {
         case RECEIVE_USER:
-            nextState[action.payload.user.id] = action.payload.user
-            return nextState
+            nextState[action.payload.user.id] = action.payload.user;
+            return nextState;
         case REMOVE_USER:
-            delete nextState[action.payload]
-            return nextState
+            delete nextState[action.payload];
+            return nextState;
+        
         default:
-            return state
+            return nextState;
     }
 }
 
