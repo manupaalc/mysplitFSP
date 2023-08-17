@@ -12,14 +12,14 @@ import configureStore from './store/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const currentUser = sessionStorage.getItem('currentUser')
-console.log('currentUser:', currentUser); 
+
 const csrfToken = sessionStorage.getItem('csrfToken')
-console.log('csrfToken:', csrfToken); 
+
 
 
 let initialState = {}
 const currentUserData = JSON.parse(currentUser)
-console.log('currentUserData:', currentUserData); // Add this line
+
 
 if (currentUserData) {
   initialState = {
