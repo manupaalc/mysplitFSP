@@ -1,8 +1,8 @@
 import './LoginForm.css';
 import React, { useState } from 'react';
 import { loginUser } from '../../store/usersReducer';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -10,22 +10,15 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
   
 
-    const currentUser = useSelector(state => state.session.currentUser);
-
     const handleSubmit = async e => {
         e.preventDefault();
-       
-
-    
-
-        dispatch(loginUser({ email, password })).catch(async res => {
-        
-        });
-    };
-
-    if (currentUser) {
-        return <Redirect to="/dashboard" />;
+        const res = dispatch(loginUser({ email, password }))
+         if(!res.ok) {
+            setEmail('')
+            setPassword('')
+        }
     }
+
 
     return (
         <div className="login-form">
@@ -51,7 +44,7 @@ const LoginForm = () => {
                         className='input-login'
                     />
                 </label>
-                <button type="submit" className="login-submit">
+                <button  type="submit" className="login-submit">
                     Log in
                 </button>
                 
@@ -67,4 +60,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default LoginForm

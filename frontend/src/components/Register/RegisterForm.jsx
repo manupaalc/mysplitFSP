@@ -21,7 +21,7 @@ const RegisterForm = props => {
     return (
         <div className="register-form">
             <h1>INTRODUCE YOURSELF</h1>
-            {errors.length > 0 && (
+            {errors && errors.length > 0 && (
                 <div className="error-message">
                     The following errors occurred:
                     <ul>

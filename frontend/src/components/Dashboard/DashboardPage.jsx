@@ -10,7 +10,10 @@ const DashboardPage = () => {
     if (!currentUser) return <Redirect to='/' />
     
     return (
-    <button onClick={()=> dispatch(logoutUser(currentUser.id))}>Log out</button>
+    
+    <>
+     <button onClick={()=> dispatch(logoutUser(currentUser.id))}>Log out</button>
+    </>
     )
 }
 

@@ -1,5 +1,5 @@
 import { deleteSession, postSession, postUser } from "../utils/sessionApiUtils"
-import { receiveCreateUserErrors, receiveLoginUserErrors } from "./errorsReducers"
+import { receiveCreateUserErrors, receiveLoginUserErrors, restoreLoginErrors } from "./errorsReducers"
 
 // CONSTANTS
 export const RECEIVE_USER = 'RECEIVE_USER'
@@ -27,6 +27,7 @@ export const createUser = userData => dispatch =>{
     .then(user => {
         sessionStorage.setItem('currentUser', JSON.stringify(user.user))
         dispatch(receiveUser(user.user))
+        dispatch(restoreLoginErrors())
      
     })
     .catch((errors) => dispatch(receiveCreateUserErrors(errors)))
@@ -37,6 +38,7 @@ export const loginUser = credentials => dispatch => (
     .then(user => {
         sessionStorage.setItem('currentUser', JSON.stringify(user.user))
         dispatch(receiveUser(user))
+        dispatch(restoreLoginErrors())
     
     })
     .catch (errors => dispatch(receiveLoginUserErrors(errors)))
@@ -59,7 +61,7 @@ const usersReducer = (state = { signupError: null }, action) => {
 
     switch (action.type) {
         case RECEIVE_USER:
-            nextState[action.payload.user.id] = action.payload.user;
+            nextState[action.payload.id] = action.payload;
             return nextState;
         case REMOVE_USER:
             delete nextState[action.payload];
