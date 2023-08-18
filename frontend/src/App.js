@@ -12,7 +12,7 @@ function App() {
   const location = useLocation(); // Get the current location
 
   // Conditionally render NavigationBar for '/' and '/login' paths
-  const shouldRenderNavigationBar = location.pathname === '/' || location.pathname === '/login';
+  const shouldRenderNavigationBar = location.pathname !== '/signup' ;
 
   return (
     <div>

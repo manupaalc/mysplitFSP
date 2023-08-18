@@ -6,9 +6,9 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const LoginPage = () => {
-    const currentUser = useSelector(state => state.session.currentUser);
+    
     const errors = useSelector(state => state.errors.loginUser)
-
+    const currentUser = useSelector(state => state.session.currentUser);
     if (currentUser) return <Redirect to="/dashboard" />;
 
     return (

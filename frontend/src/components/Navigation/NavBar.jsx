@@ -1,14 +1,17 @@
 import './NavBar.css'
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../../store/usersReducer';
+
 
 
 const NavBar = () => {
-
-    
+    const dispatch = useDispatch();
+    const [showDropdown, setShowDropdown] = useState(false)
     const currentUser = useSelector(state => state.session.currentUser)
+    console.log(currentUser)
     if (!currentUser){
         return (
             <>
@@ -33,6 +36,24 @@ const NavBar = () => {
 
             </>
         )
+    } else {
+        // return (
+        // <header className='logged-in-header'>
+        //     <Link to='/' className='logo-2'>
+        //         <img src="/logo.png" alt="logo-2" />
+        //         <p>mySplits</p>
+        //     </Link>
+        //     <div className='user-dropdown' onClick={() => setShowDropdown(!showDropdown)}>
+        //         <span>{currentUser.username}</span>
+        //         <div className={`dropdown-content ${showDropdown ? 'show' : ''}`}>
+        //             <Link to='/groups/new'>Create Group</Link>
+        //                 <button onClick={() => dispatch(logoutUser(currentUser.id))}>Log out</button>
+        //         </div>
+
+        //     </div>
+
+        // </header>
+        // )
     }
 };
 

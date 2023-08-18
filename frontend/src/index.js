@@ -65,4 +65,3 @@ if(!currentUser || !csrfToken){
 // window.loginUser = loginUser
 // window.logoutUser = logoutUser
 // window.signupUser = createUser
-//window.store = store
