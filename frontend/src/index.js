@@ -29,7 +29,7 @@ if (currentUserData) {
       }
     },
     session: {
-      currentUser : currentUserData.id
+      currentUser : {user: currentUserData}
     }
   }
 }

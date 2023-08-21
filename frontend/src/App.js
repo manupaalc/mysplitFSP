@@ -6,13 +6,14 @@ import WelcomePage from './components/WelcomePage';
 import DashboardPage from './components/Dashboard/DashboardPage';
 import PreLoginNav from './components/Navigation/NavBar';
 import NotFoundPage from './components/NotFoundPage';
+import CreateGroupPage from './components/Group/CreateGroupPage';
 
 
 function App() {
   const location = useLocation(); // Get the current location
 
   // Conditionally render NavigationBar for '/' and '/login' paths
-  const shouldRenderNavigationBar = location.pathname !== '/signup' ;
+  const shouldRenderNavigationBar = location.pathname !== '/signup' || location.pathname !=='/groups/new' ;
 
   return (
     <div>
@@ -25,6 +26,8 @@ function App() {
         <Route exact path="/signup" component={RegisterPage} />
 
         <Route exact path="/dashboard" component={DashboardPage} />
+
+        <Route exact path="/groups/new" component={CreateGroupPage}/>
 
         <Route component={NotFoundPage}/>
          

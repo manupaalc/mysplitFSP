@@ -37,14 +37,16 @@ const NavBar = () => {
             </>
         )
     } else {
+       
         return (
+        
         <header className='logged-in-header'>
             <Link to='/' className='logo-2'>
                 <img src="/logo.png" alt="logo-2" />
                 <p>mySplits</p>
             </Link>
             <div className='user-dropdown' onClick={() => setShowDropdown(!showDropdown)}>
-                <span>{currentUser.username}</span>
+                <span>{currentUser['user'].username}</span>
                 <div className={`dropdown-content ${showDropdown ? 'show' : ''}`}>
                     <Link to='/groups/new'>Create Group</Link>
                     <p onClick={() => dispatch(logoutUser(currentUser.id))}>Log out</p>

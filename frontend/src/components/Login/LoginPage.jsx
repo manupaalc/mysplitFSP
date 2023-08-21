@@ -13,7 +13,7 @@ const LoginPage = () => {
 
     return (
         <div className='login-page-container'>
-            {errors.length > 0 && <div className="login-error">Whoops! We could not find an account for that email address and password. Maybe you have forgotten your password?</div>}
+            {errors && errors.length > 0 && <div className="login-error">Whoops! We could not find an account for that email address and password. Maybe you have forgotten your password?</div>}
             <LoginForm  /> 
         </div>
     );

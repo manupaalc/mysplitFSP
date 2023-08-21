@@ -10,4 +10,6 @@ class Group < ApplicationRecord
 
     has_many :expenses,
         dependent: :destroy
+
+    has_one_attached :photo
 end
