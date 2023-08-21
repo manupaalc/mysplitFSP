@@ -1,27 +1,35 @@
-import { useDispatch } from 'react-redux';
+
+import { createGroup } from '../../store/groupsReducer';
 import './CreateGroupForm'
 import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux"
 
 const CreateGroupForm = () => {
+    const currentUser = useSelector(state => state.session.currentUser)
     const dispatch = useDispatch();
+
     const [name, setName] = useState('')
-    const [type, setType] = useState('')
-    const [photoFile, setPhotoFile] = useState(null)
-    const handleSubmit = () =>{
+    const [kind, setKind] = useState('Home')
+    const [photo, setPhoto] = useState(null)
+
+    const handleSubmit = (e) =>{
         e.preventDefault();
         //const group ={ name, type, photo: photoFile}
         const groupData = new FormData()
         groupData.append('group[name]', name)
-        groupData.append('group[type]', type)
-        if(photoFile) {
-            groupData.append('group[photo]', photoFile)
+        groupData.append('group[kind]', kind)
+        if(photo) {
+            groupData.append('group[photo]', photo)
         }
-        // missing creatGroup function here (dispatch createGroup(groupData))
+        dispatch(createGroup(groupData))
+        setName('')
+        setKind('Home')
     }
-    const handlePhoto = (e) => {
-        const photo = e.currentTarget.files[0]
-        setPhotoFile(photo)
+    const handleFile = (e) => {
+        const file = e.currentTarget.files[0]
+        setPhoto(file)
     }
+   
 
     return (     
         <form onSubmit={handleSubmit}>
@@ -30,10 +38,23 @@ const CreateGroupForm = () => {
                 <input 
                     type='text'
                     value={name}
-                    onChange={(e)=> dispatch(setName(e.target.value))}
+                    onChange={(e)=> setName(e.target.value)}
+                    required
             />
             </label>
-            <input type='file' onChange={handlePhoto} />
+            <input type='file' onChange={handleFile} />
+            <h2>GROUP OF MEMBERS</h2>
+            <p>{currentUser['user'].username}</p>
+            <h2> GROUP TYPE</h2>
+            <label >
+                <select value={kind} onChange={(e)=> setKind(e.target.value)}>
+                    <option value="Home">Home</option>
+                    <option value="Trip">Trip</option>
+                    <option value="Couple">Couple</option>
+                    <option value="Other">Other</option>
+                </select>
+            </label>
+            <button type='submit'>Save</button>
         </form>
     )
     

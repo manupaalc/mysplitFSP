@@ -1,15 +1,18 @@
 class Api::GroupsController < ApplicationController
 
-    before_action :require_login
+    
 
     def create
-        group = current_user.groups.new(group_params)
-        if group.save
-            rende
+        @group = Group.new(group_params)
+        if @group.save
+            render :group_abrev
+        else
+            render json: { errors: @group.errors.full_messages}, status: 422
+        end
     end
 
     private
     def group_params
-        params.require(:group).permit(:name, :type, group_user_atrributes:[:user_id])
+        params.require(:group).permit(:name, :kind, :photo)
     end
 end
