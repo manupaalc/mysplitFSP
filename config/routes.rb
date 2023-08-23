@@ -6,10 +6,13 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :groups, only: [:index, :create, :show, :destroy, :update]
-    resources :users, only: :create
+    resources :users, only: :create do
+      resources :friends, only: :index
+    end
     resource :session, only: [:show, :create, :destroy]
     resources :expenses, only: [:index, :create, :show, :destroy, :update]
   end
+
 
   get '*path', 
   to: 'static_pages#frontend', 

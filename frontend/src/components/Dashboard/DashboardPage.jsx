@@ -1,18 +1,23 @@
 
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../../store/usersReducer';
+import {  useSelector } from 'react-redux';
 import './DashboardPage.css'
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import LeftColumn from './LeftColumn';
+import CentralFeed from './CentralFeed';
+import RightColumn from './RightColumn';
 
 const DashboardPage = () => {
-    const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.currentUser)
     if (!currentUser) return <Redirect to='/' />
     
     return (
     
     <>
-     <button onClick={()=> dispatch(logoutUser(currentUser.id))}>Log out</button>
+     <div className='dashboard-body'>
+        <div className='left-column'><LeftColumn/></div>
+        <div className='central-feed'><CentralFeed/></div>
+        <div className='right-column'><RightColumn/></div>
+     </div>
     </>
     )
 }
