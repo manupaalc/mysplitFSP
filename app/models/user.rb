@@ -22,7 +22,8 @@ class User < ApplicationRecord
         dependent: :destroy
     
     has_many :groups,
-        through: :group_users
+        through: :group_users,
+        source: :group
     
     has_many :expenses,
         foreign_key: :payer_id,
@@ -37,6 +38,18 @@ class User < ApplicationRecord
     
     has_many :friends,
         dependent: :destroy
+
+    has_one_attached :photo,
+        dependent: :destroy
+
+    def user_photo_url
+        if photo.attached?
+            Rails.application.routes.url_helpers.rails_blob_path(photo, only_path: true)
+        else
+            nil
+        end
+    end
+    
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)

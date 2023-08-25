@@ -10,7 +10,7 @@ import { logoutUser } from '../../store/usersReducer';
 const NavBar = () => {
     const dispatch = useDispatch();
     const [showDropdown, setShowDropdown] = useState(false)
-    const currentUser = useSelector(state => state.session.currentUser)
+    let currentUser = useSelector(state => state.session.currentUser)
    
     if (!currentUser){
         return (
@@ -45,11 +45,12 @@ const NavBar = () => {
                 <img src="/logo.png" alt="logo-2" />
                 <p>mySplits</p>
             </Link>
+            <div className='central-bar'></div>
             <div className='user-dropdown' onClick={() => setShowDropdown(!showDropdown)}>
-                <span>{currentUser['user'].username}</span>
+                    <span>{currentUser && currentUser['user'].username} ▿</span>
                 <div className={`dropdown-content ${showDropdown ? 'show' : ''}`}>
                     <Link to='/groups/new'>Create Group</Link>
-                    <p onClick={() => dispatch(logoutUser(currentUser.id))}>Log out</p>
+                    <p onClick={() => dispatch(logoutUser())}>Log out</p>
                 </div>
 
             </div>

@@ -26,14 +26,20 @@ export const removeFriend = friendId => ({
 export const fetchFriends = (userId) => async (dispatch, getState) => {
     const friends = await fetchUserFriends(userId);
 
-    const friendsArray = Object.values(friends).map((friendData) => ({
-        id: friendData.id,
-        username: friendData.friend.username,
-        email: friendData.friend.email,
-        created_at: friendData.created_at
-    }));
+    
+    const normalizedFriends = friends.reduce((acc, friendData) => {
+        acc[friendData.friend.id] = {
+            id: friendData.id,
+            userId: friendData.friend.id,
+            username: friendData.friend.username,
+            email: friendData.friend.email,
+            user_photo_url: friendData.friend.user_photo_url, 
+            created_at: friendData.created_at
+        };
+        return acc;
+    }, {});
 
-    return dispatch(receiveFriends(friendsArray));
+    return dispatch(receiveFriends(normalizedFriends));
 };
 
  

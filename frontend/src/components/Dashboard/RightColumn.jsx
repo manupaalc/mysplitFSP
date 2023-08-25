@@ -4,4 +4,4 @@ const RightColumn = () => {
 
 }
 
-export default RightColumn;
+export default RightColumn

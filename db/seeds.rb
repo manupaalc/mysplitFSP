@@ -7,13 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-ApplicationRecord.transaction do 
-
+# ApplicationRecord.transaction do 
+    require "open-uri"
     # Destroy all existing records
     SplitExpense.destroy_all
     Comment.destroy_all
     Expense.destroy_all
     GroupUser.destroy_all
+    Friend.destroy_all
     Group.destroy_all
     User.destroy_all
 
@@ -21,6 +22,7 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('split_expenses')
     ApplicationRecord.connection.reset_pk_sequence!('comments')
     ApplicationRecord.connection.reset_pk_sequence!('expenses')
+    ApplicationRecord.connection.reset_pk_sequence!('friends')
     ApplicationRecord.connection.reset_pk_sequence!('group_users')
     ApplicationRecord.connection.reset_pk_sequence!('groups')
     ApplicationRecord.connection.reset_pk_sequence!('users')
@@ -31,54 +33,63 @@ ApplicationRecord.transaction do
         email: 'messi@god.com',
         password: 'password'
     )
-
+    messi.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/messi.png"),filename: "messi.png")
+    
     jordi = User.create!(
         username: 'Jordi Alba',
         email: 'jordi@np.com',
         password: 'password'
     )
+    jordi.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/jordi.png"),filename: "jordi.png")
 
     sergio = User.create!(
         username: 'Sergio Busquets',
         email: 'sergio@np.com',
         password: 'password'
     )
+    sergio.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/sergio.png"),filename: "sergio.png")
 
-    antonela = User.create!(
+    antonella = User.create!(
         username: 'Antonela Raccuzzo',
         email: 'antonela@email.com',
         password: 'password'
     )
+    antonella.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/antonella.png"),filename: "antonella.png")
 
     julian = User.create!(
         username: 'Julian Alvarez',
         email: 'julian@np.com',
         password: 'password'
     )
-
+    julian.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/julian.png"),filename: "julian.png")
+                                                
     rodrigo = User.create!(
         username: 'Rodrigo De Paul',
         email: 'rodri@np.com',
         password: 'password'
     )
-
+    rodrigo.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/rogrigo.png"),filename: "rodrigo.png")
+                                       
     kids_group = Group.create!(
         name: 'Kids',
         kind: 'Couple'
     )
+    kids_group.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/kids.jpeg"),filename: "kids.jpeg")
     
     inter_miami_group = Group.create!(
         name: 'Inter Miami',
         kind: 'Other'
     )
-
+    inter_miami_group.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/inter.png"),filename: "inter.png")
+    
     argentina_group = Group.create!(
         name: 'Argentina',
         kind: 'Trip'
     )
+    argentina_group.photo.attach(io: URI.open("https://mysplit-seeds.s3.us-west-1.amazonaws.com/afa.png"),filename: "afa.png")
 
     # Add users to groups
-    kids_group.users << [messi, antonela]
+    kids_group.users << [messi, antonella]
     inter_miami_group.users << [messi, jordi, sergio]
     argentina_group.users << [messi, julian, rodrigo]
 
@@ -125,7 +136,7 @@ ApplicationRecord.transaction do
 
     # Create comments
     kids_expense.comments.create!(
-        user: antonela,
+        user: antonella,
         body: 'Great toys!'
     )
     
@@ -140,11 +151,11 @@ ApplicationRecord.transaction do
     )
 
     # Create friendships for Messi
-    [jordi, sergio, antonela, julian, rodrigo].each do |friend|
+    [jordi, sergio, antonella, julian, rodrigo].each do |friend|
         Friend.create!(
             user: messi,
             friend: friend,
             pending: false
         )
     end
-end
+# end

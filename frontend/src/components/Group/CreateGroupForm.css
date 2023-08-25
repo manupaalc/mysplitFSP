@@ -1,0 +1,122 @@
+.form-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 80px;
+
+}
+
+.left-half {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: center;
+    padding: 20px;
+    margin-right: 40px;
+}
+
+#create-group-image {
+    width: 50%;
+    height: auto;
+    margin-right: 25px;
+}
+
+
+.right-half {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #999;
+    margin: 0, 0, 10px;
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.add-users-inputs {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    padding: 4px;
+}
+
+.add-users-inputs input{
+    font-size: 16px;
+}
+
+.username-inputs{
+    width: 106px;
+    padding: 4px;
+    margin-right: 4px;
+}
+.email-input{
+    width: 196px;
+}
+
+.name-input{
+    font-family: 'Lato', sans-serif;
+    font-size: 32px;
+    width: 100%;
+}
+
+
+
+
+.react-autosuggest__suggestions-list {
+    position: absolute;
+    width: 106px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    /* Add a border around the suggestions */
+    border-radius: 4px;
+    background-color: #fff;
+    /* Set background color */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add a shadow for depth */
+}
+
+
+.react-autosuggest__suggestion {
+    padding: 1px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: #f0f0f0;
+    /* Change background color for highlighted item */
+}
+
+#kind-button{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    padding: 4px 8px;
+    background-color: #f5f5f5;
+}
+#submit-button{
+    font-family: 'Lato', sans-serif;
+    padding: 14px 8px;
+    color: #f0f0f0;
+    background-color: #ff652f;
+    font-size: 20px;
+    
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 71px;
+    height: 45px;
+
+}

@@ -1,0 +1,12 @@
+.group-details-central{
+    display: flex;
+    margin-left: 30px;
+    align-items: center;
+}
+
+
+#group-photo{
+    height: 36px;
+    padding: 10px;
+    
+}

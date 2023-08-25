@@ -1,15 +1,14 @@
 import { csrfFetch } from "./authUtils"
 
-export const fetchAllGroups = () => (
-    fetch('/api/groups')
-        .then(res => {
-            if(res.ok) {
-                return res.json()
-            } else {
-                //error handling
-            }
-        })
-)
+export const fetchUserGroups = async(userId) => {
+    const res = await csrfFetch(`/api/users/${userId}/groups`)
+    if (res.ok) {
+        const groups = await res.json();
+        return groups;
+    } else {
+        throw new Error("Failed to fetch user groups")
+    }
+}
 
 
 export const fetchGroup = async groupId => {

@@ -6,10 +6,19 @@ class Group < ApplicationRecord
         dependent: :destroy
     
     has_many :users,
-        through: :group_users
+        through: :group_users,
+        source: :user
 
     has_many :expenses,
         dependent: :destroy
 
     has_one_attached :photo
+
+    def group_photo_url
+        if photo.attached?
+            Rails.application.routes.url_helpers.rails_blob_path(photo, only_path: true)
+        else
+            nil
+        end
+    end
 end

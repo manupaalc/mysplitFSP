@@ -24,9 +24,13 @@ export const removeGroup = groupId => ({
 })
 
 //THUNK ACTION CREATORS
-export const fetchGroups = () => async (dispatch, getState) => {
-    const groups = await groupApiUtils.fetchAllGroups()
-    return dispatch(receiveGroups(groups))
+export const fetchGroups = (userId) => async (dispatch) => {
+    try {
+        const groups = await groupApiUtils.fetchUserGroups(userId);
+        return dispatch(receiveGroups(groups));
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export const fetchGroup = groupId => (dispatch, getState) => (
@@ -38,12 +42,14 @@ export const fetchGroup = groupId => (dispatch, getState) => (
 
 export const createGroup = groupData => async dispatch => {
     try {
-        const group = await groupApiUtils.createGroup(groupData)
-        return dispatch(receiveGroup({group}))
-    } catch(errors) {
-        console.log(errors)
+        const group = await groupApiUtils.createGroup(groupData);
+        const groupId = group.id; // Assuming the response contains the newly created group's ID
+        dispatch(receiveGroup({ group }));
+        return groupId;
+    } catch (errors) {
+        console.log(errors);
     }
-}
+};
 
 // SELECTORS
 export const selectAllGroups = state => state.entities.groups
@@ -57,7 +63,12 @@ const groupReducer = (state = {}, action) => {
             nextState[action.payload.group.id] = action.payload.group
             return nextState
         case RECEIVE_GROUPS:
-            return Object.assign(nextState, action.payload)
+            const normalizedGroups = action.payload.reduce((acc, group) => {
+                acc[group.id] = group;
+                return acc;
+            }, {});
+
+            return { ...nextState, ...normalizedGroups };
         case REMOVE_GROUP:
             delete nextState[action.payload]
             return nextState

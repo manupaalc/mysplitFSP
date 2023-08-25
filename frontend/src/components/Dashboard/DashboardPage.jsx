@@ -2,7 +2,6 @@
 import {  useSelector } from 'react-redux';
 import './DashboardPage.css'
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import LeftColumn from './LeftColumn';
 import CentralFeed from './CentralFeed';
 import RightColumn from './RightColumn';
 
@@ -14,7 +13,6 @@ const DashboardPage = () => {
     
     <>
      <div className='dashboard-body'>
-        <div className='left-column'><LeftColumn/></div>
         <div className='central-feed'><CentralFeed/></div>
         <div className='right-column'><RightColumn/></div>
      </div>
