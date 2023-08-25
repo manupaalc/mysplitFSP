@@ -9,11 +9,11 @@ import entitiesReducer from "./entitiesReducer"
 const dummyReducer = (state = {}, action) => state
 
 const rootReducer = combineReducers({
-    
+    entities: entitiesReducer,
     session: sessionReducer,
     ui: dummyReducer,
-    errors: errorsReducer,
-    entities: entitiesReducer
+    errors: errorsReducer
+    
 
 })
 

@@ -1,0 +1,22 @@
+
+.group-details-body{
+    display: flex;
+    flex: row;
+    justify-content: center;
+}
+.central-feed {
+    width: 560px;
+    position: absolute;
+    left: calc(50vw - 280px);
+        min-height: 94vh;
+        box-shadow: -10px 0 5px -5px rgba(0, 0, 0, 0.5),
+        10px 0 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+.right-column {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: (50vw + 480px);
+}

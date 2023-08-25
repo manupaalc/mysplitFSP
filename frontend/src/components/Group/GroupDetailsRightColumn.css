@@ -1,0 +1,36 @@
+h3{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: #999;
+    font-weight: none;
+}
+
+li{
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+}
+
+.user-avatar{
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+        
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.user-item{
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+
+.username{
+    margin-left: 20px;
+}

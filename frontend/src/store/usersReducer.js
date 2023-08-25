@@ -45,6 +45,7 @@ export const loginUser = credentials => dispatch => (
 )
 
 export const logoutUser = userId =>  dispatch => (
+
     deleteSession()
     .then(()=> {
         sessionStorage.setItem('currentUser', null)
