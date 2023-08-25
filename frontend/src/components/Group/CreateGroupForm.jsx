@@ -174,7 +174,7 @@ const CreateGroupForm = () => {
                                     }}
                                     onSuggestionSelected={(e, { suggestion }) => handleFriendSelection1(suggestion)}
                                 />
-                                <input type="text" className='email-input' value={email1} placeholder='email address' onChange={(e) => setEmail1(e.target.value)} />
+                                <input type="text" className='email-input' value={email1} placeholder='email address' onChange={(e) => setEmail1(e.target.value)} required />
                             </div>
                             <div className='add-users-inputs' id='add-user-2'>
                                 <Autosuggest

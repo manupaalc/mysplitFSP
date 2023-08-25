@@ -33,8 +33,8 @@ export const fetchFriends = (userId) => async (dispatch, getState) => {
             userId: friendData.friend.id,
             username: friendData.friend.username,
             email: friendData.friend.email,
-            user_photo_url: friendData.friend.user_photo_url, 
-            created_at: friendData.created_at
+            userPhotoUrl: friendData.friend.user_photo_url, 
+            createdAt: friendData.created_at
         };
         return acc;
     }, {});

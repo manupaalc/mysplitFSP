@@ -29,7 +29,7 @@ const GroupDetailsRightColumn = () => {
                         const friend = friends[user.user_id];
                         return (
                             <li key={user.user_id} className='user-item'>
-                                <img src={friend.user_photo_url} alt={`${friend.username}'s Profile`} className='user-avatar' />
+                                <img src={friend.userPhotoUrl} alt={`${friend.username}'s Profile`} className='user-avatar' />
                                 <span className='username'>{friend.username}</span>
                             </li>
                         );

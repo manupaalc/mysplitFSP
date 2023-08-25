@@ -36,8 +36,6 @@ const LeftColumn = () => {
 
             </Link>
             
-           
-            <h4>All Expenses</h4>
             <div >
                 <div className='feature-title'>
                     <p>GROUPS</p><Link  to='/groups/new'><p>➕ add</p></Link> 

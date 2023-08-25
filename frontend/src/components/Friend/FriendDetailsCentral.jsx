@@ -12,8 +12,8 @@ const FriendDetailsCentral = () => {
 
     return (
         <div className='friend-details-central'>
-            {friend.user_photo_url && (
-                <img src={friend.user_photo_url} id='friend-photo' alt={`Group: ${friend.username}`}/>
+            {friend.userPhotoUrl && (
+                <img src={friend.userPhotoUrl} id='friend-photo' alt={`Group: ${friend.username}`}/>
             )}
         <h2>{friend.username}</h2>
         </div>
